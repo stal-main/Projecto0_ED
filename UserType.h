@@ -41,6 +41,7 @@ public:
 	friend ostream& operator<<(ostream& os, const userType& t) {
 
 		os << t.description << " (Priority: " << t.priority << ")";
+
 		return os;
 
 	}

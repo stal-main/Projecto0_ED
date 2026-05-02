@@ -1,9 +1,11 @@
 #pragma once
 
 #include <string>
-#include <ctime>
+#include <ostream>
+#include "time.h"
 
 using std::string;
+using std::ostream;
 
 class ticket {
 
@@ -19,8 +21,11 @@ public:
 	ticket(string code, int priority) {
 
 		this->code = code;
+
 		this->priority = priority;
+
 		this->hourArrival = time(nullptr);
+
 		this->hourAttended = 0;
 	}
 
@@ -45,6 +50,7 @@ public:
 	}
 
 	bool wasAttended() const {
+
 		return hourAttended != 0;
 	}
 
@@ -53,7 +59,7 @@ public:
 		hourAttended = time(nullptr);
 	}
 
-	double getWaitTime() {
+	double getWaitTime() const {
 
 		if (!wasAttended()) {
 
@@ -66,6 +72,23 @@ public:
 	bool operator<(const ticket& another) const {
 
 		return this->priority < another.priority;
+	}
+
+	friend ostream& operator<<(ostream& os, const ticket& t) {
+
+		os << "Ticket :" << t.code << ", prioridad: " << t.priority;
+
+		if (t.wasAttended()) {
+
+			os << "Tiempo esperado: " << t.getWaitTime() << "s";
+		}
+
+		else {
+
+			os << "Esperando";
+		}
+
+		return os;
 	}
 };
 
