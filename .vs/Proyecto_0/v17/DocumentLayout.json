@@ -3,32 +3,32 @@
   "WorkspaceRootPath": "C:\\Users\\Usuario\\Downloads\\asdfghjkl\\Projecto0_ED\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{5CB65833-FECA-4230-9E40-C5E3262EDB41}|Proyecto_0.vcxproj|C:\\Users\\Usuario\\Downloads\\asdfghjkl\\Projecto0_ED\\ticket.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{5CB65833-FECA-4230-9E40-C5E3262EDB41}|Proyecto_0.vcxproj|solutionrelative:ticket.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5CB65833-FECA-4230-9E40-C5E3262EDB41}|Proyecto_0.vcxproj|C:\\Users\\Usuario\\Downloads\\asdfghjkl\\Projecto0_ED\\userType.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{5CB65833-FECA-4230-9E40-C5E3262EDB41}|Proyecto_0.vcxproj|solutionrelative:userType.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{5CB65833-FECA-4230-9E40-C5E3262EDB41}|Proyecto_0.vcxproj|C:\\Users\\Usuario\\Downloads\\asdfghjkl\\Projecto0_ED\\Proyecto_0.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{5CB65833-FECA-4230-9E40-C5E3262EDB41}|Proyecto_0.vcxproj|solutionrelative:Proyecto_0.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5CB65833-FECA-4230-9E40-C5E3262EDB41}|Proyecto_0.vcxproj|C:\\Users\\Usuario\\Downloads\\asdfghjkl\\Projecto0_ED\\service.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{5CB65833-FECA-4230-9E40-C5E3262EDB41}|Proyecto_0.vcxproj|solutionrelative:service.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5CB65833-FECA-4230-9E40-C5E3262EDB41}|Proyecto_0.vcxproj|C:\\Users\\Usuario\\Downloads\\asdfghjkl\\Projecto0_ED\\area.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{5CB65833-FECA-4230-9E40-C5E3262EDB41}|Proyecto_0.vcxproj|solutionrelative:area.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{5CB65833-FECA-4230-9E40-C5E3262EDB41}|Proyecto_0.vcxproj|C:\\Users\\Usuario\\Downloads\\asdfghjkl\\Projecto0_ED\\priorityQueue.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5CB65833-FECA-4230-9E40-C5E3262EDB41}|Proyecto_0.vcxproj|solutionrelative:priorityQueue.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{5CB65833-FECA-4230-9E40-C5E3262EDB41}|Proyecto_0.vcxproj|C:\\Users\\Usuario\\Downloads\\asdfghjkl\\Projecto0_ED\\HeapPriorityQueue.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{5CB65833-FECA-4230-9E40-C5E3262EDB41}|Proyecto_0.vcxproj|solutionrelative:HeapPriorityQueue.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{5CB65833-FECA-4230-9E40-C5E3262EDB41}|Proyecto_0.vcxproj|C:\\Users\\Usuario\\Downloads\\asdfghjkl\\Projecto0_ED\\priorityQueue.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{5CB65833-FECA-4230-9E40-C5E3262EDB41}|Proyecto_0.vcxproj|solutionrelative:priorityQueue.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+      "AbsoluteMoniker": "D:0:0:{5CB65833-FECA-4230-9E40-C5E3262EDB41}|Proyecto_0.vcxproj|C:\\Users\\Usuario\\Downloads\\asdfghjkl\\Projecto0_ED\\Service.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5CB65833-FECA-4230-9E40-C5E3262EDB41}|Proyecto_0.vcxproj|solutionrelative:Service.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5CB65833-FECA-4230-9E40-C5E3262EDB41}|Proyecto_0.vcxproj|C:\\Users\\Usuario\\Downloads\\asdfghjkl\\Projecto0_ED\\Ticket.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5CB65833-FECA-4230-9E40-C5E3262EDB41}|Proyecto_0.vcxproj|solutionrelative:Ticket.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5CB65833-FECA-4230-9E40-C5E3262EDB41}|Proyecto_0.vcxproj|C:\\Users\\Usuario\\Downloads\\asdfghjkl\\Projecto0_ED\\userType.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5CB65833-FECA-4230-9E40-C5E3262EDB41}|Proyecto_0.vcxproj|solutionrelative:userType.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5CB65833-FECA-4230-9E40-C5E3262EDB41}|Proyecto_0.vcxproj|C:\\Users\\Usuario\\Downloads\\asdfghjkl\\Projecto0_ED\\counter.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -50,7 +50,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": 7,
           "Children": [
             {
               "$type": "Document",
@@ -78,7 +78,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 3,
               "Title": "HeapPriorityQueue.h",
               "DocumentMoniker": "C:\\Users\\Usuario\\Downloads\\asdfghjkl\\Projecto0_ED\\HeapPriorityQueue.h",
               "RelativeDocumentMoniker": "HeapPriorityQueue.h",
@@ -91,7 +91,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 2,
               "Title": "PriorityQueue.h",
               "DocumentMoniker": "C:\\Users\\Usuario\\Downloads\\asdfghjkl\\Projecto0_ED\\PriorityQueue.h",
               "RelativeDocumentMoniker": "PriorityQueue.h",
@@ -112,38 +112,37 @@
               "RelativeToolTip": "Counter.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2026-04-26T23:35:10.039Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-26T23:35:10.039Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "Area.h",
               "DocumentMoniker": "C:\\Users\\Usuario\\Downloads\\asdfghjkl\\Projecto0_ED\\Area.h",
               "RelativeDocumentMoniker": "Area.h",
               "ToolTip": "C:\\Users\\Usuario\\Downloads\\asdfghjkl\\Projecto0_ED\\Area.h",
               "RelativeToolTip": "Area.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAIkAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAHgAAAAAAAAAAAAIwJMAAABPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2026-04-26T23:34:59.374Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Service.h",
               "DocumentMoniker": "C:\\Users\\Usuario\\Downloads\\asdfghjkl\\Projecto0_ED\\Service.h",
               "RelativeDocumentMoniker": "Service.h",
               "ToolTip": "C:\\Users\\Usuario\\Downloads\\asdfghjkl\\Projecto0_ED\\Service.h",
               "RelativeToolTip": "Service.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAD0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2026-04-26T23:34:50.503Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "Proyecto_0.cpp",
               "DocumentMoniker": "C:\\Users\\Usuario\\Downloads\\asdfghjkl\\Projecto0_ED\\Proyecto_0.cpp",
               "RelativeDocumentMoniker": "Proyecto_0.cpp",
@@ -156,7 +155,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 5,
               "Title": "Ticket.h",
               "DocumentMoniker": "C:\\Users\\Usuario\\Downloads\\asdfghjkl\\Projecto0_ED\\Ticket.h",
               "RelativeDocumentMoniker": "Ticket.h",
@@ -164,12 +163,11 @@
               "RelativeToolTip": "Ticket.h",
               "ViewState": "AgIAAAUAAAAAAAAAAADwvz0AAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2026-04-26T23:35:19.576Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-26T23:35:19.576Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 6,
               "Title": "UserType.h",
               "DocumentMoniker": "C:\\Users\\Usuario\\Downloads\\asdfghjkl\\Projecto0_ED\\UserType.h",
               "RelativeDocumentMoniker": "UserType.h",
@@ -177,8 +175,7 @@
               "RelativeToolTip": "UserType.h",
               "ViewState": "AgIAABUAAAAAAAAAAAAAACsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2026-04-26T23:34:37.585Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-26T23:34:37.585Z"
             }
           ]
         }

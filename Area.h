@@ -2,26 +2,26 @@
 
 #include <ostream>
 #include <string>
-#include <vector>
 #include "Counter.h"
 #include "Ticket.h"
 #include "HeapPriorityQueue.h"
 
 using std::string;
-using std::vector;
 using std::to_string;
 using std::ostream;
 
 
 class area {
 
-private: 
-	
+private:
+
 	string code;
 
 	string description;
 
-	vector<counter*> windows;
+	counter** windows;
+
+	int numWindows;
 
 	heapPriorityQueue<ticket*> ticketQueue;
 
@@ -37,21 +37,27 @@ public:
 
 		this->totalDispensedTickets = 0;
 
-		for (int i = 1; i <= numWindows; i++) {
+		this->numWindows = numWindows;
 
-			string windowName = code + to_string(i);
+		this->windows = new counter*[numWindows];
 
-			windows.push_back(new counter(windowName));
+		for (int i = 0; i <= numWindows; i++) {
+
+			string windowName = code + to_string(i + 1);
+
+			windows[i] = new counter(windowName); 
 		}
 
 	}
 
 	~area() {
 
-		for (counter* v : windows) {
+		for (int i = 0; i < numWindows; i++) {
 
-			delete v;
+			delete windows[i];
 		}
+
+		delete[] windows;
 	}
 
 	string getCode() {
@@ -74,9 +80,14 @@ public:
 		return totalDispensedTickets;
 	}
 
-	vector<counter*>& getWindows() {
+	counter** getWindows() {
 
 		return windows;
+	}
+
+	int getNumWindows() {
+
+		return numWindows;
 	}
 
 	void addTicket(ticket* t) {
@@ -100,37 +111,41 @@ public:
 
 	counter* findWindow(string windowName) {
 
-		for (counter* c : windows) {
+		for (int i = 0; i < numWindows; i++) {
 
-			if (c->getName() == windowName) {
+			if (windows[i]->getName() == windowName) {
 
-				return c;
+				return windows[i];
 			}
 		}
 
 		return nullptr;
 	}
 
-	void setNumWindows(int numWindows) {
+	void setNumWindows(int newNumWindows) {
 
-		for (counter* c : windows) {
+		for (int i = 0; i < numWindows; i++) {
 
-			delete c;
+			delete windows[i];
 		}
 
-		windows.clear();
+		delete[] windows;
 
-		for (int i = 1; i <= numWindows; i++) {
+		numWindows = newNumWindows;
 
-			string windowsName = code + to_string(i);
+		windows = new counter*[numWindows];
 
-			windows.push_back(new counter(windowsName));
+		for (int i = 0; i < numWindows; i++) {
+
+			string windowName = code + to_string(i + 1);
+
+			windows[i] = new counter(windowName);
 		}
 	}
 
 	friend ostream& operator<<(ostream& os, const area& a) {
 
-		os << "[" << a.code << "]" << a.description << " | Windows: " << a.windows.size() << " | In queue: " << a.ticketQueue.getSize();
+		os << "[" << a.code << "]" << a.description << " | Windows: " << a.numWindows << " | In queue: " << a.ticketQueue.getSize();
 
 		return os;
 			
