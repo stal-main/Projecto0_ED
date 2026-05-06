@@ -129,7 +129,10 @@
     <ClInclude Include="Area.h" />
     <ClInclude Include="Counter.h" />
     <ClInclude Include="HeapPriorityQueue.h" />
+    <ClInclude Include="LinkedList.h" />
+    <ClInclude Include="List.h" />
     <ClInclude Include="MinHeap.h" />
+    <ClInclude Include="Node.h" />
     <ClInclude Include="Pair.h" />
     <ClInclude Include="PriorityQueue.h" />
     <ClInclude Include="Service.h" />
