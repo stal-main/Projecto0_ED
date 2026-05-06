@@ -1,5 +1,9 @@
 #pragma once
 
+//implementacion de los metodos escritos en List.h aplicados para generar una lista enlazada
+//obtenido del trabajo en clase
+//escrito por Julián Rodríguez
+
 #include <iostream>
 #include <stdexcept>
 #include "List.h"
