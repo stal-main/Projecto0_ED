@@ -1,5 +1,8 @@
 #pragma once
 
+//clase que representa un tipo de usuario con su descripción y prioridad
+//escrito por Kevin Solano y Julián Rodríguez
+
 #include <ostream>
 #include <string>
 
@@ -15,14 +18,14 @@ private:
 	int priority;
 
 public:
-
+	//constructor
 	userType(string description, int priority) {
 
 		this->description = description;
 
 		this->priority = priority;
 	}
-
+	//getters
 	string getDescription() {
 
 		return description;
@@ -33,11 +36,13 @@ public:
 		return priority;
 	}
 
+	//comparar la prioridad de dos tiquetes para ordenar la cola
 	bool operator<(const userType& another) const {
 
 		return this->priority < another.priority;
 	}
 
+	//imprimir el tipo de usuario y su prioridad
 	friend ostream& operator<<(ostream& os, const userType& t) {
 
 		os << t.description << " (Priority: " << t.priority << ")";
@@ -46,4 +51,3 @@ public:
 
 	}
 };
-
