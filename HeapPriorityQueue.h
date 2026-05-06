@@ -1,5 +1,8 @@
 #pragma once
 
+//clase que implementa los metodos de HeapPriorityQueue usando minHeap con prioridad y elemento (Pair) como nodos del arbol
+//escrito por Kevin Solano
+
 #include <stdexcept>
 #include <iostream>
 #include "PriorityQueue.h"

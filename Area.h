@@ -1,5 +1,8 @@
 #pragma once
 
+//clase que representa un area de servicio, con su codigo, descripcion, ventanillas y una cola de tickets
+//escrito por Kevin Solano y Julián Rodríguez
+
 #include <ostream>
 #include <string>
 #include "Counter.h"
@@ -29,6 +32,7 @@ private:
 
 public:
 
+	//constructor
 	area(string code, string description, int numWindows) {
 
 		this->code = code;
@@ -41,7 +45,7 @@ public:
 
 		this->windows = new counter*[numWindows];
 
-		for (int i = 0; i <= numWindows; i++) {
+		for (int i = 0; i < numWindows; i++) {
 
 			string windowName = code + to_string(i + 1);
 
@@ -50,6 +54,7 @@ public:
 
 	}
 
+	//destructor
 	~area() {
 
 		for (int i = 0; i < numWindows; i++) {
@@ -60,6 +65,7 @@ public:
 		delete[] windows;
 	}
 
+	//getters
 	string getCode() {
 
 		return code;
@@ -90,6 +96,7 @@ public:
 		return numWindows;
 	}
 
+	//añadir un tiquete a la cola de tickets del area, aumentando en 1 el contador de tiquetes dispensados
 	void addTicket(ticket* t) {
 
 		ticketQueue.insert(t, t->getPriority());
@@ -97,6 +104,7 @@ public:
 		totalDispensedTickets++;
 	}
 
+	//obtener el siguiente tiquete a atender, eliminandolo de la cola de tickets del area
 	ticket* getNextTicket() {
 
 		if (ticketQueue.isEmpty()) return nullptr;
@@ -104,11 +112,13 @@ public:
 		return ticketQueue.removeMin();
 	}
 
+	//verificar si la cola de tickets del area esta vacia
 	bool queueIsEmpty() {
 
 		return ticketQueue.isEmpty();
 	}
 
+	//buscar una ventanilla por su nombre, devolviendo un puntero a la ventanilla si se encuentra o nullptr si no se encuentra
 	counter* findWindow(string windowName) {
 
 		for (int i = 0; i < numWindows; i++) {
@@ -122,6 +132,8 @@ public:
 		return nullptr;
 	}
 
+	//eliminar las ventanillas y crear unas nuevas con el nuevo numero de ventanillas, 
+	//asignandoles un nombre a cada una a partir del codigo del area y un numero consecutivo
 	void setNumWindows(int newNumWindows) {
 
 		for (int i = 0; i < numWindows; i++) {
@@ -143,6 +155,7 @@ public:
 		}
 	}
 
+	//imprimir el codigo del area, su descripcion, el numero de ventanillas y la cantidad de tiquetes en la cola
 	friend ostream& operator<<(ostream& os, const area& a) {
 
 		os << "[" << a.code << "]" << a.description << " | Windows: " << a.numWindows << " | In queue: " << a.ticketQueue.getSize();

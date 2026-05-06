@@ -1,5 +1,9 @@
 #pragma once
 
+//clase que implementa un minHeap con los metodos de insert, first, removeFirst, remove, clear, getSize y print
+//obtenido del trabajo en clase
+//escrito por Kevin Solano
+
 #define DEFAULT_MAX 1024
 
 #include <iostream>
