@@ -45,7 +45,7 @@ public:
 
 		this->windows = new counter*[numWindows];
 
-		for (int i = 0; i <= numWindows; i++) {
+		for (int i = 0; i < numWindows; i++) {
 
 			string windowName = code + to_string(i + 1);
 
