@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\Usuario\\Downloads\\asdfghjkl\\Projecto0_ED\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{5CB65833-FECA-4230-9E40-C5E3262EDB41}|Proyecto_0.vcxproj|C:\\Users\\Usuario\\Downloads\\asdfghjkl\\Projecto0_ED\\Ticket.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5CB65833-FECA-4230-9E40-C5E3262EDB41}|Proyecto_0.vcxproj|solutionrelative:Ticket.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{5CB65833-FECA-4230-9E40-C5E3262EDB41}|Proyecto_0.vcxproj|C:\\Users\\Usuario\\Downloads\\asdfghjkl\\Projecto0_ED\\Proyecto_0.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{5CB65833-FECA-4230-9E40-C5E3262EDB41}|Proyecto_0.vcxproj|solutionrelative:Proyecto_0.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
@@ -21,14 +25,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{5CB65833-FECA-4230-9E40-C5E3262EDB41}|Proyecto_0.vcxproj|C:\\Users\\Usuario\\Downloads\\asdfghjkl\\Projecto0_ED\\Service.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{5CB65833-FECA-4230-9E40-C5E3262EDB41}|Proyecto_0.vcxproj|solutionrelative:Service.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5CB65833-FECA-4230-9E40-C5E3262EDB41}|Proyecto_0.vcxproj|C:\\Users\\Usuario\\Downloads\\asdfghjkl\\Projecto0_ED\\Ticket.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{5CB65833-FECA-4230-9E40-C5E3262EDB41}|Proyecto_0.vcxproj|solutionrelative:Ticket.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{5CB65833-FECA-4230-9E40-C5E3262EDB41}|Proyecto_0.vcxproj|C:\\Users\\Usuario\\Downloads\\asdfghjkl\\Projecto0_ED\\userType.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{5CB65833-FECA-4230-9E40-C5E3262EDB41}|Proyecto_0.vcxproj|solutionrelative:userType.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{5CB65833-FECA-4230-9E40-C5E3262EDB41}|Proyecto_0.vcxproj|C:\\Users\\Usuario\\Downloads\\asdfghjkl\\Projecto0_ED\\counter.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
@@ -50,11 +46,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 8,
               "Title": "MinHeap.h",
               "DocumentMoniker": "C:\\Users\\Usuario\\Downloads\\asdfghjkl\\Projecto0_ED\\MinHeap.h",
               "RelativeDocumentMoniker": "MinHeap.h",
@@ -66,7 +62,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 7,
               "Title": "Pair.h",
               "DocumentMoniker": "C:\\Users\\Usuario\\Downloads\\asdfghjkl\\Projecto0_ED\\Pair.h",
               "RelativeDocumentMoniker": "Pair.h",
@@ -78,7 +74,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "HeapPriorityQueue.h",
               "DocumentMoniker": "C:\\Users\\Usuario\\Downloads\\asdfghjkl\\Projecto0_ED\\HeapPriorityQueue.h",
               "RelativeDocumentMoniker": "HeapPriorityQueue.h",
@@ -86,12 +82,11 @@
               "RelativeToolTip": "HeapPriorityQueue.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2026-04-29T02:24:15.822Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-29T02:24:15.822Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "PriorityQueue.h",
               "DocumentMoniker": "C:\\Users\\Usuario\\Downloads\\asdfghjkl\\Projecto0_ED\\PriorityQueue.h",
               "RelativeDocumentMoniker": "PriorityQueue.h",
@@ -99,12 +94,11 @@
               "RelativeToolTip": "PriorityQueue.h",
               "ViewState": "AgIAAAMAAAAAAAAAAAAAABoAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2026-04-26T23:35:35.226Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-26T23:35:35.226Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 6,
               "Title": "Counter.h",
               "DocumentMoniker": "C:\\Users\\Usuario\\Downloads\\asdfghjkl\\Projecto0_ED\\Counter.h",
               "RelativeDocumentMoniker": "Counter.h",
@@ -116,7 +110,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Area.h",
               "DocumentMoniker": "C:\\Users\\Usuario\\Downloads\\asdfghjkl\\Projecto0_ED\\Area.h",
               "RelativeDocumentMoniker": "Area.h",
@@ -124,12 +118,11 @@
               "RelativeToolTip": "Area.h",
               "ViewState": "AgIAAHgAAAAAAAAAAAAIwJMAAABPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2026-04-26T23:34:59.374Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-26T23:34:59.374Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Service.h",
               "DocumentMoniker": "C:\\Users\\Usuario\\Downloads\\asdfghjkl\\Projecto0_ED\\Service.h",
               "RelativeDocumentMoniker": "Service.h",
@@ -137,12 +130,11 @@
               "RelativeToolTip": "Service.h",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAD0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2026-04-26T23:34:50.503Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-04-26T23:34:50.503Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Proyecto_0.cpp",
               "DocumentMoniker": "C:\\Users\\Usuario\\Downloads\\asdfghjkl\\Projecto0_ED\\Proyecto_0.cpp",
               "RelativeDocumentMoniker": "Proyecto_0.cpp",
@@ -155,27 +147,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 0,
               "Title": "Ticket.h",
               "DocumentMoniker": "C:\\Users\\Usuario\\Downloads\\asdfghjkl\\Projecto0_ED\\Ticket.h",
               "RelativeDocumentMoniker": "Ticket.h",
               "ToolTip": "C:\\Users\\Usuario\\Downloads\\asdfghjkl\\Projecto0_ED\\Ticket.h",
               "RelativeToolTip": "Ticket.h",
-              "ViewState": "AgIAAAUAAAAAAAAAAADwvz0AAAAcAAAAAAAAAA==",
+              "ViewState": "AgIAACEAAAAAAAAAAAAAAD0AAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2026-04-26T23:35:19.576Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "UserType.h",
-              "DocumentMoniker": "C:\\Users\\Usuario\\Downloads\\asdfghjkl\\Projecto0_ED\\UserType.h",
-              "RelativeDocumentMoniker": "UserType.h",
-              "ToolTip": "C:\\Users\\Usuario\\Downloads\\asdfghjkl\\Projecto0_ED\\UserType.h",
-              "RelativeToolTip": "UserType.h",
-              "ViewState": "AgIAABUAAAAAAAAAAAAAACsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2026-04-26T23:34:37.585Z"
+              "WhenOpened": "2026-04-26T23:35:19.576Z",
+              "EditorCaption": ""
             }
           ]
         }

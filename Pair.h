@@ -1,5 +1,9 @@
 #pragma once
 
+//clase que representa un par de clave y valor, ademas de operadores de comparacion para comparar elementos a partir de sus llaves
+//obtenido del trabajo en clase
+//escrito por Kevin Solano
+
 #include <ostream>
 
 using std::ostream;

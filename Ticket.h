@@ -17,7 +17,7 @@ private:
 	time_t hourAttended;
 
 public:
-
+	//constructor
 	ticket(string code, int priority) {
 
 		this->code = code;
@@ -29,6 +29,7 @@ public:
 		this->hourAttended = 0;
 	}
 
+	//getters
 	string getCode() const {
 
 		return code;

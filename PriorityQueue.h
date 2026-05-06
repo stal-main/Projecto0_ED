@@ -1,5 +1,9 @@
 #pragma once
 
+//metodos de la clase abstracta priorityQueue
+//obtenido del trabajo en clase
+//escrito por Kevin Solano
+
 template <typename E>
 
 class priorityQueue {

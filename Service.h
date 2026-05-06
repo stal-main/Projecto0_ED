@@ -1,5 +1,8 @@
 #pragma once
 
+//clase que representa un servicio con su descripción, prioridad, código de área y cantidad de tiquetes solicitados
+//escrito por Kevin Solano y Julián Rodríguez
+
 #include <ostream>
 #include <string>
 
@@ -19,7 +22,7 @@ private:
 	int requestedTickets;
 
 public:
-
+	//constructor
 	service(string description, int priority, string areaCode) {
 
 		this->description = description;
@@ -31,6 +34,7 @@ public:
 		this->requestedTickets = 0;
 	}
 
+	//getters
 	string getDescription() {
 
 		return description;
@@ -51,11 +55,13 @@ public:
 		return requestedTickets;
 	}
 
+	//incrementar la cantidad de tiquetes solicitados para las estadisticas
 	void addRequest() {
 
 		requestedTickets++;
 	}
 
+	//comparar la prioridad de dos tiquetes para ordenar la cola
 	friend ostream& operator<<(ostream& os, const service& s) {
 
 		os << s.description << " (Priority: " << s.priority << ", Area: " << s.areaCode << ")";
