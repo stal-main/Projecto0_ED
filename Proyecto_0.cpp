@@ -87,12 +87,45 @@ ticket* generateTicket(userType& user, service& serv) {
 }
 
 void clearAllQueues() {
-
+    areas.goToStart();
+    while (!areas.atEnd()) {
+        area* a = areas.getElement();
+        while (!a->queueIsEmpty()) {
+            ticket* t = a->getNextTicket();
+            delete t;
+        }
+        counter** windows = a->getWindows();
+        for (int i = 0; i < a->getNumWindows(); i++)
+            windows[i]->freeCounter();
+        areas.next();
+    }
 }
 
 //  1. Queue status
 void showQueueStatus() {
+    printSeparator();
+    cout << "         ESTADO DE LAS COLAS" << endl;
+    printSeparator();
 
+    if (areas.getSize() == 0) {
+        cout << "No hay areas registradas." << endl;
+        waitForKey();
+        return;
+    }
+
+    areas.goToStart();
+    while (!areas.atEnd()) {
+        area* a = areas.getElement();
+        cout << "\nArea: " << a->getCode() << " - " << a->getDescription() << endl;
+        cout << "  Ventanillas (" << a->getNumWindows() << "):" << endl;
+        counter** windows = a->getWindows();
+        for (int i = 0; i < a->getNumWindows(); i++)
+            cout << "    " << *windows[i] << endl;
+        cout << endl << "  Tiquetes en cola: " << a->getQueueSize() << endl;
+        areas.next();
+    }
+
+    waitForKey();
 }
 
 
@@ -280,6 +313,53 @@ void adminMenu() {
 
 //  5. Statistics
 void showStatistics() {
+    printSeparator();
+    cout << "       ESTADISTICAS DEL SISTEMA" << endl;
+    printSeparator();
+
+    cout << "\n--- General ---" << endl;
+    cout << "  Total tiquetes dispensados : " << totalDispensed << endl;
+    cout << "  Total tiquetes atendidos : " << totalAttended << endl;
+    double avgWait = 0.0;
+    if (totalAttended > 0) {
+        avgWait = totalWaitTime / totalAttended;
+    }
+    cout << "  Tiempo promedio de espera : " << avgWait << " s" << endl;
+
+    cout << "\n--- Por servicio ---" << endl;
+    if (services.getSize() == 0) {
+        cout << "  Sin servicios registrados." << endl;
+    }
+    else {
+        services.goToStart();
+        while (!services.atEnd()) {
+            service* s = services.getElement();
+            cout << "  " << s->getDescription()
+                << " Tiquetes solicitados: " << s->getRequestedTickets() << endl;
+            services.next();
+        }
+    }
+
+    cout << "\n--- Por area / ventanilla ---" << endl;
+    if (areas.getSize() == 0) {
+        cout << " Sin areas registradas." << endl;
+    }
+    else {
+        areas.goToStart();
+        while (!areas.atEnd()) {
+            area* a = areas.getElement();
+            cout << "  Area: " << a->getCode() << " - " << a->getDescription() << endl;
+            cout << "    Total dispensados en area: " << a->getTotalDispensed() << endl;
+            counter** windows = a->getWindows();
+            for (int i = 0; i < a->getNumWindows(); i++)
+                cout << "    Ventanilla " << windows[i]->getName()
+                << " | Atendidos: " << windows[i]->getAttendedTickets() << endl;
+            areas.next();
+        }
+    }
+
+    waitForKey();
+
 }
 
 int main() {
