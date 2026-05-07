@@ -277,6 +277,142 @@ void areasMenu() {
 
 //  4.3  Services submenu
 void servicesMenu() {
+    int opt;
+    do {
+        printSeparator();
+        cout << "       MENU - SERVICIOS DISPONIBLES" << endl;
+        printSeparator();
+        cout << "1. Agregar" << endl;
+        cout << "2. Eliminar" << endl;
+        cout << "3. Reordenar" << endl;
+        cout << "4. Regresar" << endl;
+
+        opt = readOption(1, 4);
+
+        if (opt == 1) {
+            try {
+                if (areas.getSize() == 0)
+                    throw runtime_error("No hay areas disponibles.");
+
+                string desc = readString("Descripcion: ");
+                if (desc.empty())
+                    throw runtime_error("La descripcion no puede estar vacia.");
+
+                cout << "Areas disponibles:" << endl;
+                areas.goToStart();
+                while (!areas.atEnd()) {
+                    area* a = areas.getElement();
+                    cout << "  " << a->getCode() << " - " << a->getDescription() << endl;
+                    areas.next();
+                }
+
+                string areaCode = readString("Codigo de area: ");
+                if (!findAreaByCode(areaCode))
+                    throw runtime_error("Area no encontrada.");
+
+                int prior = readInt("Prioridad (1-9): ");
+                if (prior < 1 || prior > 9)
+                    throw out_of_range("La prioridad debe estar entre 1 y 9.");
+
+                services.append(new service(desc, prior, areaCode));
+                cout << "Servicio agregado." << endl;
+
+            }
+            catch (invalid_argument&) {
+                cout << "Error: ingrese un numero valido para la prioridad." << endl;
+            }
+            catch (out_of_range& e) {
+                cout << "Error: " << e.what() << endl;
+            }
+            catch (runtime_error& e) {
+                cout << "Error: " << e.what() << endl;
+            }
+
+        }
+        else if (opt == 2) {
+            try {
+                if (services.getSize() == 0)
+                    throw runtime_error("No hay servicios registrados.");
+
+                services.goToStart();
+                int serviceI = 0;
+                while (!services.atEnd()) {
+                    service* s = services.getElement();
+                    cout << "  " << (serviceI + 1) << ". " << *s << endl;
+                    services.next();
+                    serviceI++;
+                }
+
+                int serviceS = readInt("Seleccione servicio a eliminar: ");
+                if (serviceS < 1 || serviceS > services.getSize())
+                    throw out_of_range("Servicio invalido.");
+
+                services.goToPos(serviceS - 1);
+                service* s = services.getElement();
+                services.remove();
+                delete s;
+                clearAllQueues();
+                cout << "Servicio eliminado y colas limpiadas." << endl;
+
+            }
+            catch (invalid_argument&) {
+                cout << "Error: ingrese un numero valido." << endl;
+            }
+            catch (out_of_range& e) {
+                cout << "Error: " << e.what() << endl;
+            }
+            catch (runtime_error& e) {
+                cout << "Error: " << e.what() << endl;
+            }
+
+        }
+        else if (opt == 3) {
+            try {
+                if (services.getSize() < 2)
+                    throw runtime_error("Se necesitan al menos 2 servicios para reordenar.");
+
+                services.goToStart();
+                int serviceI = 0;
+                while (!services.atEnd()) {
+                    service* s = services.getElement();
+                    cout << "  " << (serviceI + 1) << ". " << s->getDescription() << endl;
+                    services.next();
+                    serviceI++;
+                }
+
+                int ubAnt = readInt("Numero de servicio a reubicar: ");
+                if (ubAnt < 1 || ubAnt > services.getSize())
+                    throw out_of_range("Posicion origen invalida.");
+
+                int ubDest = readInt("Posicion destino: ");
+                if (ubDest < 1 || ubDest > services.getSize())
+                    throw out_of_range("Posicion destino invalida.");
+
+                if (ubAnt == ubDest) {
+                    cout << "El servicio ya esta en esa posicion." << endl;
+                }
+                else {
+                    services.goToPos(ubAnt - 1);
+                    service* s = services.getElement();
+                    services.remove();
+                    services.goToPos(ubDest - 1);
+                    services.insert(s);
+                    cout << "Servicio reubicado." << endl;
+                }
+
+            }
+            catch (invalid_argument&) {
+                cout << "Error: ingrese un numero valido." << endl;
+            }
+            catch (out_of_range& e) {
+                cout << "Error: " << e.what() << endl;
+            }
+            catch (runtime_error& e) {
+                cout << "Error: " << e.what() << endl;
+            }
+        }
+
+    } while (opt != 4);
 
 }
 
