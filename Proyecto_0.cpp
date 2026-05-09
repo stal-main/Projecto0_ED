@@ -147,12 +147,12 @@ void showQueueStatus() {
 
 //  2. Tickets menu
 void ticketMenu() {
-
+    //TODO
 }
 
 //  3. AttendTicket
 void attendTicket() {
-
+    //TODO
 }
 
 
