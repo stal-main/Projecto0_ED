@@ -134,8 +134,13 @@ public:
 		}
 
 		swap(pos, size - 1);
+
 		size--;
+
 		siftDown(pos);
+
+		siftUp(pos);
+
 		return elements[size];
 
 	}

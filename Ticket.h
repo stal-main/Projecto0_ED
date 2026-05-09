@@ -5,7 +5,7 @@
 
 #include <string>
 #include <ostream>
-#include "time.h"
+#include <time.h>
 
 using std::string;
 using std::ostream;

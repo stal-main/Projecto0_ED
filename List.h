@@ -14,7 +14,7 @@ public:
 
 	List(const List<E>& other) = delete;
 
-	void operator=(const List<E>& other) = delete;
+	virtual void operator=(const List<E>& other) = delete;
 
 	virtual ~List() {}
 
