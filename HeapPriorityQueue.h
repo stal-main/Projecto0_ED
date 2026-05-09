@@ -1,6 +1,7 @@
 #pragma once
 
 //clase que implementa los metodos de HeapPriorityQueue usando minHeap con prioridad y elemento (Pair) como nodos del arbol
+//obtenido del trabajo en clase
 //escrito por Kevin Solano
 
 #include <stdexcept>

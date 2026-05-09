@@ -9,6 +9,11 @@
 #include "LinkedList.h"
 #include "HeapPriorityQueue.h"
 
+//programa principal que muestra los menus y le permite al usuario moverse entre ellos
+//para simular un sistema de tiquetes con diferentes tipos de usuario, servicios y areas, 
+//atendiendo los tiquetes segun su prioridad y mostrando estadisticas de los servicios
+//escrito por Juan Esteban Sanchez
+
 using std::cout;
 using std::cin;
 using std::endl;
@@ -20,26 +25,30 @@ using std::runtime_error;
 using std::out_of_range;
 using std::invalid_argument;
 
+//Listas para almacenar los tipos de usuario, servicios y areas
 heapPriorityQueue<userType*> userTypes;
 LinkedList<service*>         services;
 LinkedList<area*>            areas;
 
+//Inicializacion de variables
 int    globalConsecutive = 100;
 int    totalDispensed = 0;
 int    totalAttended = 0;
 double totalWaitTime = 0.0;
 
+//linea para separar información
 void printSeparator() {
     cout << "----------------------------------" << endl;
 }
 
+//espera a que el usuario presione enter para continuar
 void waitForKey() {
     cout << "\nPresione Enter para continuar...";
     string resp;
     getline(cin, resp);
 }
 
-
+//lee la entrada del usuario como string, la convierte a int y la retorna
 int readInt(const string& prompt) {
     string line;
     cout << prompt;
@@ -47,6 +56,7 @@ int readInt(const string& prompt) {
     return stoi(line);
 }
 
+//lee la entrada del usuario como string y la retorna
 string readString(const string& prompt) {
     string line;
     cout << prompt;
@@ -54,6 +64,7 @@ string readString(const string& prompt) {
     return line;
 }
 
+//lee la entrada del usuario como int, validando que este dentro del rango
 int readOption(int min, int max) {
     while (true) {
         try {
@@ -68,6 +79,7 @@ int readOption(int min, int max) {
     }
 }
 
+//busca un area por su codigo, devolviendo un puntero al area si se encuentra o nullptr si no se encuentra
 area* findAreaByCode(const string& code) {
     areas.goToStart();
     while (!areas.atEnd()) {
@@ -78,6 +90,8 @@ area* findAreaByCode(const string& code) {
     return nullptr;
 }
 
+//genera un nuevo tiquete para un usuario y servicio segun lo seleccionado, 
+//asignandole un codigo que depende del codigo del area y un numero consecutivo,
 ticket* generateTicket(userType& user, service& serv) {
     int PT = user.getPriority() * 10 + serv.getPriority();
     string code = serv.getAreaCode() + to_string(globalConsecutive++);
@@ -86,6 +100,7 @@ ticket* generateTicket(userType& user, service& serv) {
     return new ticket(code, PT);
 }
 
+//libera la memoria de los tiquetes en las colas de cada area y de las ventanillas, dejando todas las colas vacias
 void clearAllQueues() {
     areas.goToStart();
     while (!areas.atEnd()) {
@@ -101,7 +116,8 @@ void clearAllQueues() {
     }
 }
 
-//  1. Queue status
+//muestra el estado de las colas de cada area, mostrando su codigo y descripcion, 
+//el numero de ventanillas, el estado de cada ventanilla y la cantidad de tiquetes en la cola
 void showQueueStatus() {
     printSeparator();
     cout << "         ESTADO DE LAS COLAS" << endl;
@@ -140,7 +156,8 @@ void attendTicket() {
 }
 
 
-//  4.1  User types submenu
+//menu para agregar o eliminar tipos de usuario, validando que la descripcion no este vacia 
+//y que la prioridad sea un numero entero mayor a 0
 void userTypeMenu() {
     int opt;
     do {
@@ -197,7 +214,7 @@ void userTypeMenu() {
 }
 
 
-//  4.2  Areas submenu
+//menu para las diferentes areas, permitiendo agregar un area con su codigo, descripcion y numero de ventanillas
 void areasMenu() {
     int opt;
     do {
@@ -275,7 +292,7 @@ void areasMenu() {
 }
 
 
-//  4.3  Services submenu
+// menu de los servicios disponibles, permitiendo agregar un servicio con su descripcion, prioridad y area asociada
 void servicesMenu() {
     int opt;
     do {
@@ -416,7 +433,7 @@ void servicesMenu() {
 
 }
 
-//  4. Administration menu
+//menu de administracion para modificar todos los aspectos del sistema
 void adminMenu() {
     int opt;
     do {
@@ -447,7 +464,8 @@ void adminMenu() {
 }
 
 
-//  5. Statistics
+//muestra las estadisticas del sistema, incluyendo el total de tiquetes dispensados, 
+//clientes atendidos y el tiempo promedio de espera
 void showStatistics() {
     printSeparator();
     cout << "       ESTADISTICAS DEL SISTEMA" << endl;
@@ -498,6 +516,7 @@ void showStatistics() {
 
 }
 
+//funcion principal que muestra el menu principal y permite al usuario navegar entre las diferentes opciones del sistema
 int main() {
     int opt;
     do {
