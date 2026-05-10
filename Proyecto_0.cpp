@@ -84,7 +84,9 @@ area* findAreaByCode(const string& code) {
     areas.goToStart();
     while (!areas.atEnd()) {
         area* a = areas.getElement();
-        if (a->getCode() == code) return a;
+        if (a->getCode() == code) {
+            return a;
+        }
         areas.next();
     }
     return nullptr;
@@ -144,15 +146,155 @@ void showQueueStatus() {
     waitForKey();
 }
 
-
 //  2. Tickets menu
 void ticketMenu() {
-    //TODO
+    int opt;
+    do {
+        printSeparator();
+        cout << "           MENU DE TIQUETES" << endl;
+        printSeparator();
+        cout << "1. Seleccionar tipo de cliente y servicio" << endl;
+        cout << "2. Regresar" << endl;
+
+        opt = readOption(1, 2);
+
+        if (opt == 1) {
+            try {
+                if (userTypes.isEmpty())
+                    throw runtime_error("No hay tipos de usuario registrados.");
+                if (services.getSize() == 0)
+                    throw runtime_error("No hay servicios registrados.");
+                if (areas.getSize() == 0)
+                    throw runtime_error("No hay areas registradas.");
+
+                LinkedList<userType*> temp;
+                int count = 0;
+                cout << "\nTipos de usuario disponibles:" << endl;
+                while (!userTypes.isEmpty()) {
+                    userType* u = userTypes.removeMin();
+                    temp.append(u);
+                    cout << "  " << (count + 1) << ". " << u->getDescription() << endl;
+                    count++;
+                }
+                temp.goToStart();
+                while (!temp.atEnd()) {
+                    userType* u = temp.getElement();
+                    userTypes.insert(u, u->getPriority());
+                    temp.next();
+                }
+
+                int userT = readInt("Seleccione tipo de usuario: ");
+                if (userT < 1 || userT > count)
+                    throw out_of_range("Tipo de usuario invalido.");
+
+                temp.goToPos(userT - 1);
+                userType* selectedUser = temp.getElement();
+                cout << "\nServicios disponibles:" << endl;
+                services.goToStart();
+                int serviceI = 0;
+                while (!services.atEnd()) {
+                    service* s = services.getElement();
+                    cout << "  " << (serviceI + 1) << ". " << s->getDescription()
+                        << " [Area: " << s->getAreaCode() << "]" << endl;
+                    services.next();
+                    serviceI++;
+                }
+
+                int serviceT = readInt("Seleccione servicio: ");
+                if (serviceT < 1 || serviceT > services.getSize())
+                    throw out_of_range("Servicio invalido.");
+
+                services.goToPos(serviceT - 1);
+                service* selectedService = services.getElement();
+
+                area* a = findAreaByCode(selectedService->getAreaCode());
+                if (!a) throw runtime_error("Area del servicio no encontrada.");
+
+                ticket* t = generateTicket(*selectedUser, *selectedService);
+                a->addTicket(t);
+
+                printSeparator();
+                cout << "  TIQUETE GENERADO" << endl;
+                printSeparator();
+                cout << "  Codigo: " << t->getCode() << endl;
+                cout << "  Prioridad: " << t->getPriority() << endl;
+                cout << "  Servicio: " << selectedService->getDescription() << endl;
+                cout << "  Area: " << a->getCode() << " - " << a->getDescription() << endl;
+                cout << "  En cola: " << a->getQueueSize() << " tiquete(s)" << endl;
+                printSeparator();
+
+            }
+            catch (invalid_argument&) {
+                cout << "Error: ingrese un numero valido." << endl;
+            }
+            catch (out_of_range& e) {
+                cout << "Error: " << e.what() << endl;
+            }
+            catch (runtime_error& e) {
+                cout << "Error: " << e.what() << endl;
+            }
+        }
+
+    } while (opt != 2);
 }
 
-//  3. AttendTicket
+//  3. Atender ticket
 void attendTicket() {
-    //TODO
+    try {
+        if (areas.getSize() == 0)
+            throw runtime_error("No hay areas registradas.");
+
+        cout << "\nAreas disponibles:" << endl;
+        areas.goToStart();
+        int areasI = 0;
+        while (!areas.atEnd()) {
+            area* a = areas.getElement();
+            cout << "  " << (areasI + 1) << ". " << a->getCode()
+                << " - " << a->getDescription() << endl;
+            areas.next();
+            areasI++;
+        }
+
+        int areaT = readInt("Seleccione area: ");
+        if (areaT < 1 || areaT > areas.getSize())
+            throw out_of_range("Area invalida.");
+
+        areas.goToPos(areaT - 1);
+        area* a = areas.getElement();
+
+        cout << "Ventanillas del area " << a->getCode() << ":" << endl;
+        counter** windows = a->getWindows();
+        for (int i = 0; i < a->getNumWindows(); i++)
+            cout << "  " << (i + 1) << ". " << windows[i]->getName() << endl;
+
+        int windowS = readInt("Seleccione ventanilla: ");
+        if (windowS < 1 || windowS > a->getNumWindows())
+            throw out_of_range("Ventanilla invalida.");
+
+        counter* w = windows[windowS - 1];
+
+        if (a->queueIsEmpty())
+            throw runtime_error("No hay usuarios en espera en el area " + a->getCode() + ".");
+
+        ticket* t = a->getNextTicket();
+        w->attendTicket(t);
+
+        totalAttended++;
+        totalWaitTime += t->getWaitTime();
+
+        cout << "\nAtendiendo tiquete: " << t->getCode()
+            << " en ventanilla " << w->getName() << endl;
+
+    }
+    catch (invalid_argument&) {
+        cout << "Error: ingrese un numero valido." << endl;
+    }
+    catch (out_of_range& e) {
+        cout << "Error: " << e.what() << endl;
+    }
+    catch (runtime_error& e) {
+        cout << "Error: " << e.what() << endl;
+    }
 }
 
 
@@ -162,7 +304,7 @@ void userTypeMenu() {
     int opt;
     do {
         printSeparator();
-        cout << "   MENU - TIPOS DE USUARIO" << endl;
+        cout << "       MENU - TIPOS DE USUARIO" << endl;
         printSeparator();
         cout << "1. Agregar" << endl;
         cout << "2. Eliminar" << endl;
@@ -197,6 +339,35 @@ void userTypeMenu() {
         }
         else if (opt == 2) {
             try {
+                if (userTypes.isEmpty())
+                    throw runtime_error("No hay tipos de usuario registrados.");
+                LinkedList<userType*> temp;
+                int count = 0;
+                while (!userTypes.isEmpty()) {
+                    userType* u = userTypes.removeMin();
+                    temp.append(u);
+                    cout << "  " << (count + 1) << ". " << u->getDescription()
+                        << " (Prioridad: " << u->getPriority() << ")" << endl;
+                    count++;
+                }
+
+                int tipo = readInt("Seleccione tipo a eliminar: ");
+                if (tipo < 1 || tipo > count)
+                    throw out_of_range("Opcion invalida.");
+                temp.goToStart();
+                int i = 1;
+                while (!temp.atEnd()) {
+                    userType* u = temp.getElement();
+                    if (i == tipo)
+                        delete u;
+                    else
+                        userTypes.insert(u, u->getPriority());
+                    temp.next();
+                    i++;
+                }
+
+                clearAllQueues();
+                cout << "Tipo eliminado y colas limpiadas." << endl;
 
             }
             catch (invalid_argument&) {
@@ -214,12 +385,13 @@ void userTypeMenu() {
 }
 
 
+
 //menu para las diferentes areas, permitiendo agregar un area con su codigo, descripcion y numero de ventanillas
 void areasMenu() {
     int opt;
     do {
         printSeparator();
-        cout << "     MENU - AREAS" << endl;
+        cout << "           MENU - AREAS" << endl;
         printSeparator();
         cout << "1. Agregar" << endl;
         cout << "2. Modificar cantidad de ventanillas" << endl;
@@ -261,6 +433,33 @@ void areasMenu() {
         }
         else if (opt == 2) {
             try {
+                if (areas.getSize() == 0)
+                    throw runtime_error("No hay areas registradas.");
+
+                areas.goToStart();
+                int areaI = 0;
+                while (!areas.atEnd()) {
+                    area* a = areas.getElement();
+                    cout << "  " << (areaI + 1) << ". " << a->getCode()
+                        << " - " << a->getDescription() << endl;
+                    areas.next();
+                    areaI++;
+                }
+
+                int areaS = readInt("Seleccione area: ");
+                if (areaS < 1 || areaS > areas.getSize())
+                    throw out_of_range("Area invalida.");
+
+                areas.goToPos(areaS - 1);
+                area* a = areas.getElement();
+                cout << "Ventanillas actuales: " << a->getNumWindows() << endl;
+
+                int windnum = readInt("Nuevo numero de ventanillas: ");
+                if (windnum < 1)
+                    throw out_of_range("Debe haber al menos 1 ventanilla.");
+
+                a->setNumWindows(windnum);
+                cout << "Ventanillas actualizadas." << endl;
 
             }
             catch (invalid_argument&) {
@@ -276,6 +475,61 @@ void areasMenu() {
         }
         else if (opt == 3) {
             try {
+                if (areas.getSize() == 0)
+                    throw runtime_error("No hay areas registradas.");
+
+                areas.goToStart();
+                int areaI = 0;
+                while (!areas.atEnd()) {
+                    area* a = areas.getElement();
+                    cout << "  " << (areaI + 1) << ". " << a->getCode()
+                        << " - " << a->getDescription() << endl;
+                    areas.next();
+                    areaI++;
+                }
+
+                int areaS = readInt("Seleccione area a eliminar: ");
+                if (areaS < 1 || areaS > areas.getSize())
+                    throw out_of_range("Area invalida.");
+
+                areas.goToPos(areaS - 1);
+                area* a = areas.getElement();
+                string aCode = a->getCode();
+                LinkedList<int> toDelete;
+                services.goToStart();
+                int serviceI = 0;
+                bool Servicios = false;
+                while (!services.atEnd()) {
+                    service* s = services.getElement();
+                    if (s->getAreaCode() == aCode) {
+                        if (!Servicios) {
+                            cout << "Los siguientes servicios seran eliminados:" << endl;
+                            Servicios = true;
+                        }
+                        cout << "  - " << s->getDescription() << endl;
+                        toDelete.append(serviceI);
+                    }
+                    services.next();
+                    serviceI++;
+                }
+
+                string resp = readString("Confirmar eliminacion? (s/n): ");
+                if (resp != "s" && resp != "S")
+                    throw runtime_error("Operacion cancelada.");
+                for (int i = toDelete.getSize() - 1; i >= 0; i--) {
+                    toDelete.goToPos(i);
+                    int pos = toDelete.getElement();
+                    services.goToPos(pos);
+                    service* s = services.getElement();
+                    services.remove();
+                    delete s;
+                }
+
+                areas.goToPos(areaS - 1);
+                areas.remove();
+                delete a;
+                cout << "Area eliminada." << endl;
+
             }
             catch (invalid_argument&) {
                 cout << "Error: ingrese un numero valido." << endl;
@@ -430,15 +684,15 @@ void servicesMenu() {
         }
 
     } while (opt != 4);
-
 }
+
 
 //menu de administracion para modificar todos los aspectos del sistema
 void adminMenu() {
     int opt;
     do {
         printSeparator();
-        cout << "    MENU DE ADMINISTRACION" << endl;
+        cout << "        MENU DE ADMINISTRACION" << endl;
         printSeparator();
         cout << "1. Tipos de usuario" << endl;
         cout << "2. Areas" << endl;
@@ -462,7 +716,6 @@ void adminMenu() {
 
     } while (opt != 5);
 }
-
 
 //muestra las estadisticas del sistema, incluyendo el total de tiquetes dispensados, 
 //clientes atendidos y el tiempo promedio de espera
@@ -513,7 +766,6 @@ void showStatistics() {
     }
 
     waitForKey();
-
 }
 
 //funcion principal que muestra el menu principal y permite al usuario navegar entre las diferentes opciones del sistema
@@ -521,7 +773,7 @@ int main() {
     int opt;
     do {
         printSeparator();
-        cout << " SISTEMA DE COLAS - MENU PRINCIPAL" << endl;
+        cout << "   SISTEMA DE COLAS - MENU PRINCIPAL" << endl;
         printSeparator();
         cout << "1. Estado de las colas" << endl;
         cout << "2. Tiquetes" << endl;
@@ -543,6 +795,7 @@ int main() {
 
     } while (opt != 6);
 
+    // Cleanup
     while (!userTypes.isEmpty()) {
         userType* u = userTypes.removeMin();
         delete u;
