@@ -33,6 +33,12 @@ public:
 		this->attendedTickets = 0;
 	}
 
+	//destructor: libera la memoria del tiquete actual si existe
+	~counter() {
+
+		delete actualTicket;
+	}
+
 	//getters
 	string getName() {
 
@@ -56,7 +62,10 @@ public:
 	}
 
 	//atender un tiquete y aumentar en 1 el contador de tiquetes atendidos
+	//si habia un tiquete anterior, lo elimina antes de reemplazarlo
 	void attendTicket(ticket* t) {
+
+		delete actualTicket;
 
 		actualTicket = t;
 
@@ -68,13 +77,15 @@ public:
 	//libera la ventanilla asignandole nullptr al tiquete actual
 	void freeCounter() {
 
+		delete actualTicket;
+
 		actualTicket = nullptr;
 	}
 
 	//imprimir el nombre de la ventanilla y el tiquete que se esta atendiendo, si no hay tiquete muestra ---
 	friend ostream& operator<<(ostream& os, const counter& c) {
 
-		os << "Counter " << c.name << " | Attending: ";
+		os << "ventanilla " << c.name << " | Atendiendo: ";
 
 		if (c.actualTicket != nullptr) {
 
