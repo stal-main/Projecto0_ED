@@ -67,7 +67,7 @@ public:
 		requestedTickets = 0;
 	}
 
-	//comparar la prioridad de dos tiquetes para ordenar la cola
+	//imprimir la descripcion del servicio, su prioridad y el codigo de area al imprimir el servicio
 	friend ostream& operator<<(ostream& os, const service& s) {
 
 		os << s.description << " (Prioridad: " << s.priority << ", Area: " << s.areaCode << ")";
