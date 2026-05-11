@@ -145,6 +145,15 @@ public:
 
 	}
 
+	//retorna el elemento en la posicion dada sin eliminarlo del heap
+	E getAt(int pos) const {
+
+		if (pos < 0 || pos >= size)
+			throw runtime_error("Invalid index");
+
+		return elements[pos];
+	}
+
 	void clear() {
 
 		size = 0;

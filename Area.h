@@ -30,6 +30,10 @@ private:
 
 	int totalDispensedTickets;
 
+	int totalAttendedTickets;
+
+	double totalWaitTime;
+
 public:
 
 	//constructor
@@ -40,6 +44,10 @@ public:
 		this->description = description;
 
 		this->totalDispensedTickets = 0;
+
+		this->totalAttendedTickets = 0;
+
+		this->totalWaitTime = 0.0;
 
 		this->numWindows = numWindows;
 
@@ -96,6 +104,37 @@ public:
 		return numWindows;
 	}
 
+	//registrar el tiempo de espera de un tiquete atendido para calcular el promedio por area
+	void addWaitTime(double waitTime) {
+
+		totalWaitTime += waitTime;
+
+		totalAttendedTickets++;
+	}
+
+	//obtener el tiempo promedio de espera de los tiquetes atendidos en el area
+	double getAvgWaitTime() {
+
+		if (totalAttendedTickets == 0) return 0.0;
+
+		return totalWaitTime / totalAttendedTickets;
+	}
+
+	//reiniciar todos los contadores del area y sus ventanillas para limpiar estadisticas
+	void resetStats() {
+
+		totalDispensedTickets = 0;
+
+		totalAttendedTickets = 0;
+
+		totalWaitTime = 0.0;
+
+		for (int i = 0; i < numWindows; i++) {
+
+			windows[i]->resetStats();
+		}
+	}
+
 	//añadir un tiquete a la cola de tickets del area, aumentando en 1 el contador de tiquetes dispensados
 	void addTicket(ticket* t) {
 
@@ -116,6 +155,12 @@ public:
 	bool queueIsEmpty() {
 
 		return ticketQueue.isEmpty();
+	}
+
+	//obtener el tiquete en la posicion dada sin eliminarlo de la cola, para mostrar los codigos en pantalla
+	ticket* peekTicketAt(int i) const {
+
+		return ticketQueue.getElementAt(i);
 	}
 
 	//buscar una ventanilla por su nombre, devolviendo un puntero a la ventanilla si se encuentra o nullptr si no se encuentra

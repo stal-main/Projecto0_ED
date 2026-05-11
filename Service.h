@@ -61,10 +61,16 @@ public:
 		requestedTickets++;
 	}
 
+	//reiniciar el contador de tiquetes para limpiar estadisticas
+	void resetStats() {
+
+		requestedTickets = 0;
+	}
+
 	//comparar la prioridad de dos tiquetes para ordenar la cola
 	friend ostream& operator<<(ostream& os, const service& s) {
 
-		os << s.description << " (Priority: " << s.priority << ", Area: " << s.areaCode << ")";
+		os << s.description << " (Prioridad: " << s.priority << ", Area: " << s.areaCode << ")";
 
 		return os;
 	}

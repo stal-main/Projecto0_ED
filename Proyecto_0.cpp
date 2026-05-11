@@ -25,6 +25,11 @@ using std::runtime_error;
 using std::out_of_range;
 using std::invalid_argument;
 
+void attendTicket();
+void userTypeMenu();
+void areasMenu();
+void servicesMenu();
+
 //Listas para almacenar los tipos de usuario, servicios y areas
 heapPriorityQueue<userType*> userTypes;
 LinkedList<service*>         services;
@@ -97,6 +102,7 @@ area* findAreaByCode(const string& code) {
 ticket* generateTicket(userType& user, service& serv) {
     int PT = user.getPriority() * 10 + serv.getPriority();
     string code = serv.getAreaCode() + to_string(globalConsecutive++);
+    user.addRequest();
     serv.addRequest();
     totalDispensed++;
     return new ticket(code, PT);
@@ -137,9 +143,25 @@ void showQueueStatus() {
         cout << "\nArea: " << a->getCode() << " - " << a->getDescription() << endl;
         cout << "  Ventanillas (" << a->getNumWindows() << "):" << endl;
         counter** windows = a->getWindows();
-        for (int i = 0; i < a->getNumWindows(); i++)
+
+        for (int i = 0; i < a->getNumWindows(); i++) {
             cout << "    " << *windows[i] << endl;
+        }
         cout << endl << "  Tiquetes en cola: " << a->getQueueSize() << endl;
+
+        if (a->queueIsEmpty()) {
+
+            cout << "ninguno";
+        }
+        else {
+
+            for (int i = 0; i < a->getQueueSize(); i++) {
+                cout << a->peekTicketAt(i)->getCode() << " ";
+            }
+        }
+
+        cout << endl;
+
         areas.next();
     }
 
@@ -273,14 +295,22 @@ void attendTicket() {
 
         counter* w = windows[windowS - 1];
 
+        if (w->isBusy()) {
+            cout << "Advertencia: la ventanilla " << w->getName()
+                << " ya esta atendiendo el tiquete " << w->getActualTicket()->getCode()
+                << ". Se reemplazara con el siguiente en cola." << endl;
+        }
+
         if (a->queueIsEmpty())
             throw runtime_error("No hay usuarios en espera en el area " + a->getCode() + ".");
 
         ticket* t = a->getNextTicket();
         w->attendTicket(t);
 
+        double waitTime = t->getWaitTime();
         totalAttended++;
-        totalWaitTime += t->getWaitTime();
+        totalWaitTime += waitTime;
+        a->addWaitTime(waitTime);
 
         cout << "\nAtendiendo tiquete: " << t->getCode()
             << " en ventanilla " << w->getName() << endl;
@@ -351,28 +381,94 @@ void userTypeMenu() {
                     count++;
                 }
 
-                int tipo = readInt("Seleccione tipo a eliminar: ");
-                if (tipo < 1 || tipo > count)
-                    throw out_of_range("Opcion invalida.");
-                temp.goToStart();
-                int i = 1;
-                while (!temp.atEnd()) {
-                    userType* u = temp.getElement();
-                    if (i == tipo)
-                        delete u;
-                    else
+                int tipo = -1;
+
+                try {
+                    tipo = readInt("Seleccione tipo a eliminar: ");
+                }
+                catch (invalid_argument&) {
+                    
+                    temp.goToStart();
+
+                    while (!temp.atEnd()) {
+
+                        userType* u = temp.getElement();
+
                         userTypes.insert(u, u->getPriority());
-                    temp.next();
-                    i++;
+
+                        temp.next();
+                    }
+
+                    cout << "Error: ingrese un numero valido." << endl;
+                    continue;
                 }
 
+                
+                if (tipo < 1 || tipo > count) {
+
+                    temp.goToStart();
+
+                    while (!temp.atEnd()) {
+
+                        userType* u = temp.getElement();
+                               
+                        userTypes.insert(u, u->getPriority());
+
+                        temp.next();
+                    }
+
+                    throw out_of_range("Opcion invalida.");
+                }
+
+                cout << "Advertencia: se eliminaran todos los tiquetes de todas las colas." << endl;
+
+                string resp = readString("Confirmar eliminacion? (s/n): ");
+
+                if (resp != "s" && resp != "S") {
+
+                    temp.goToStart();
+
+                    while (!temp.atEnd()) {
+
+                        userType* u = temp.getElement();
+
+                        userTypes.insert(u, u->getPriority());
+
+                        temp.next();
+                    }
+
+                    cout << "Operacion cancelada." << endl;
+
+                    continue;
+                }
+
+                temp.goToStart();
+
+                int i = 1;
+
+                while (!temp.atEnd()) {
+
+                    userType* u = temp.getElement();
+
+                    if (i == tipo) {
+
+                        delete u;
+                    }
+                    else {
+
+                        userTypes.insert(u, u->getPriority());
+                    }
+
+                    temp.next();
+
+                    i++;
+                }
+            
                 clearAllQueues();
                 cout << "Tipo eliminado y colas limpiadas." << endl;
 
             }
-            catch (invalid_argument&) {
-                cout << "Error: ingrese un numero valido." << endl;
-            }
+
             catch (out_of_range& e) {
                 cout << "Error: " << e.what() << endl;
             }
@@ -620,6 +716,16 @@ void servicesMenu() {
 
                 services.goToPos(serviceS - 1);
                 service* s = services.getElement();
+
+                cout << "Advertencia: se eliminaran todos los tiquetes de todas las colas." << endl;
+                
+                string resp = readString("Confimar eliminacion? (s/n): ");
+
+                if (resp != "s" && resp != "S") {
+
+                    throw runtime_error("Operacion cancelada.");
+                }
+
                 services.remove();
                 delete s;
                 clearAllQueues();
@@ -711,6 +817,46 @@ void adminMenu() {
             totalAttended = 0;
             totalWaitTime = 0.0;
             globalConsecutive = 100;
+
+            areas.goToStart();
+
+            while (!areas.atEnd()) {
+
+                areas.getElement()->resetStats();
+                areas.next();
+            }
+
+            services.goToStart();
+
+            while (!services.atEnd()) {
+
+                services.getElement()->resetStats();
+
+                services.next();
+            }
+
+            LinkedList<userType*> temp;
+
+            while (!userTypes.isEmpty()) {
+
+                userType* u = userTypes.removeMin();
+
+                u->resetStats();
+
+                temp.append(u);
+            }
+
+            temp.goToStart();
+
+            while (!temp.atEnd()) {
+
+                userType* u = temp.getElement();
+
+                userTypes.insert(u, u->getPriority());
+
+                temp.next();
+            }
+
             cout << "Colas y estadisticas limpiadas." << endl;
         }
 
@@ -720,6 +866,7 @@ void adminMenu() {
 //muestra las estadisticas del sistema, incluyendo el total de tiquetes dispensados, 
 //clientes atendidos y el tiempo promedio de espera
 void showStatistics() {
+
     printSeparator();
     cout << "       ESTADISTICAS DEL SISTEMA" << endl;
     printSeparator();
@@ -757,6 +904,7 @@ void showStatistics() {
             area* a = areas.getElement();
             cout << "  Area: " << a->getCode() << " - " << a->getDescription() << endl;
             cout << "    Total dispensados en area: " << a->getTotalDispensed() << endl;
+            cout << "    Tiempo promedio de espera: " << a->getAvgWaitTime() << " s" << endl;
             counter** windows = a->getWindows();
             for (int i = 0; i < a->getNumWindows(); i++)
                 cout << "    Ventanilla " << windows[i]->getName()

@@ -54,6 +54,12 @@ public:
 
 	}
 
+	//retorna el elemento en la posicion dada del heap sin eliminarlo
+	E getElementAt(int i) const {
+
+		return pairs->getAt(i).value;
+	}
+
 	void clear() override {
 		pairs->clear();
 	}

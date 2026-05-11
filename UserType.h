@@ -17,6 +17,8 @@ private:
 
 	int priority;
 
+	int requestedTickets;
+
 public:
 	//constructor
 	userType(string description, int priority) {
@@ -24,6 +26,8 @@ public:
 		this->description = description;
 
 		this->priority = priority;
+
+		this->requestedTickets = 0;
 	}
 	//getters
 	string getDescription() {
@@ -34,6 +38,23 @@ public:
 	int getPriority() {
 
 		return priority;
+	}
+
+	int getRequestedTickets() {
+
+		return requestedTickets;
+	}
+
+	//incrementar la cantidad de tiquetes solicitados para las estadisticas
+	void addRequest() {
+
+		requestedTickets++;
+	}
+
+	//reiniciar el contador de tiquetes para limpiar estadisticas
+	void resetStats() {
+
+		requestedTickets = 0;
 	}
 
 	//comparar la prioridad de dos tiquetes para ordenar la cola

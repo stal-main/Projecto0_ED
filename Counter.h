@@ -82,6 +82,12 @@ public:
 		actualTicket = nullptr;
 	}
 
+	//reiniciar el contador de tiquetes atendidos para limpiar estadisticas
+	void resetStats() {
+
+		attendedTickets = 0;
+	}
+
 	//imprimir el nombre de la ventanilla y el tiquete que se esta atendiendo, si no hay tiquete muestra ---
 	friend ostream& operator<<(ostream& os, const counter& c) {
 
