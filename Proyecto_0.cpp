@@ -168,7 +168,7 @@ void showQueueStatus() {
     waitForKey();
 }
 
-//  2. Tickets menu
+//menu para generar un nuevo tiquete, permitiendo al usuario seleccionar el tipo de cliente y el servicio
 void ticketMenu() {
     int opt;
     do {
@@ -260,7 +260,8 @@ void ticketMenu() {
     } while (opt != 2);
 }
 
-//  3. Atender ticket
+//menu para atender un tiquete, permitiendo seleccionar el area y la ventanilla donde se atenderá
+//el siguiente tiquete en la cola del area, mostrando el tiquete atendido y actualizando las estadisticas
 void attendTicket() {
     try {
         if (areas.getSize() == 0)
@@ -943,7 +944,6 @@ int main() {
 
     } while (opt != 6);
 
-    // Cleanup
     while (!userTypes.isEmpty()) {
         userType* u = userTypes.removeMin();
         delete u;
