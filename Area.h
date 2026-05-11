@@ -203,7 +203,7 @@ public:
 	//imprimir el codigo del area, su descripcion, el numero de ventanillas y la cantidad de tiquetes en la cola
 	friend ostream& operator<<(ostream& os, const area& a) {
 
-		os << "[" << a.code << "]" << a.description << " | Windows: " << a.numWindows << " | In queue: " << a.ticketQueue.getSize();
+		os << "[" << a.code << "]" << a.description << " | Ventana" << a.numWindows << " | En fila: " << a.ticketQueue.getSize();
 
 		return os;
 			
